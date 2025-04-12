@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 numpy = "*"
 opencv-python = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
