@@ -32,3 +32,22 @@ def advanced_threshold_detection(results):
     first_negative = min(negatives, key=lambda x: x['frequency'])
 
     return (last_positive['frequency'] + first_negative['frequency']) / 2
+
+
+def detect_stereo_threshold(test_results):
+    """Определяет максимальную разницу частот, при которой сохраняется стереоэффект"""
+    successful_tests = [
+        (r.freq_left, r.freq_right)
+        for r in test_results
+        if r.is_fused
+    ]
+
+    if not successful_tests:
+        return 0
+
+    max_diff = max(
+        abs(left - right)
+        for left, right in successful_tests
+    )
+
+    return max_diff
